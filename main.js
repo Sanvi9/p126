@@ -54,7 +54,17 @@ function draw() {
 
 	fill("#FF0000");
 	stroke("#FF0000");
-
+	
+	if (scoreLeftWrist>0.2) {
+	circle(leftWristX,leftWristY,20)
+	leftWristY_numeric = Number(leftWristY)
+	floorY = floor(leftWristY_numeric) 
+	console.log(floorY)
+	volume = floorY/500
+	console.log("volume="+volume)
+	song.setVolume(volume);
+	}
+	
 	}
 
 
@@ -62,6 +72,6 @@ function draw() {
 function play()
 {
 	song.play();
-	song.setVolume(1);
+	
 	song.rate(1);
 }
