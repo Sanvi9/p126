@@ -1,8 +1,10 @@
 song = "";
+status = "";
 
 function preload()
 {
-	song = loadSound("music.mp3");
+	song1 = loadSound("music.mp3");
+	song2 = loadSound("song2.mp3") 
 }
 
 scoreRightWrist = 0;
@@ -57,21 +59,28 @@ function draw() {
 	
 	if (scoreLeftWrist>0.2) {
 	circle(leftWristX,leftWristY,20)
-	leftWristY_numeric = Number(leftWristY)
-	floorY = floor(leftWristY_numeric) 
-	console.log(floorY)
-	volume = floorY/500
-	console.log("volume="+volume)
-	song.setVolume(volume);
+	if (staus == ""){
+		song2.play();
+		status = "song2"
+	}
+	if(staus == "song1"){
+		song1.stop()
+		song2.play()
+		status = "song2"
+	}
+
+	if (scoreRightWrist>0.2) {
+		circle(rightWristX,rightWristY,20)
+		if (staus == ""){
+			song1.play();
+			status = "song1"
+		}
+		if(staus == "song2"){
+			song2.stop()
+			song1.play()
+			status = "song1"
+		}
 	}
 	
 	}
-
-
-
-function play()
-{
-	song.play();
-	
-	song.rate(1);
 }
